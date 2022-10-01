@@ -1,0 +1,37 @@
+﻿@page
+@model Aulas.Web.Pages.SomarModel
+@{
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="text-center" style="font-size: 50px">
+
+            @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
+            {
+                <label>@Model.Operacao.Digits[i]</label>
+
+                if (i != Model.Operacao.Digits.Count - 1)
+                {
+                    <label>@Model.Operacao.OperatorStr</label>
+                }
+            }
+
+            <label> = ?</label>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form method="post" class="text-center">
+            @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
+            {
+                <input type="hidden" name="Digits[@i]" value="@Model.Operacao.Digits[i]" />
+            }
+            <input type="number" name="resultado" autofocus />
+            <input type="submit">
+        </form>
+    </div>
+</div>

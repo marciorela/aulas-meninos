@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aulas.Web.Models
+namespace Aulas.Domain.Models
 {
     public class Soma : OperacaoBase
     {
@@ -13,7 +13,7 @@ namespace Aulas.Web.Models
             OperatorStr = "+";
         }
 
-        public override int Results()
+        public override int Result()
         {
             var result = 0;
             foreach (var digit in Digits)

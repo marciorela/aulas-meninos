@@ -4,34 +4,114 @@
 }
 
 <div class="row">
-    <div class="col-12">
-
-        <div class="text-center" style="font-size: 50px">
-
-            @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
-            {
-                <label>@Model.Operacao.Digits[i]</label>
-
-                if (i != Model.Operacao.Digits.Count - 1)
-                {
-                    <label>@Model.Operacao.OperatorStr</label>
-                }
-            }
-
-            <label> = ?</label>
-        </div>
+    <div class="col text-center bg-info text-white">
+        <label>Acertos</label>
+    </div>
+    <div class="col text-center bg-danger text-white">
+        <label>Erros</label>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <form method="post" class="text-center">
-            @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
-            {
-                <input type="hidden" name="Digits[@i]" value="@Model.Operacao.Digits[i]" />
-            }
-            <input type="number" name="resultado" autofocus />
-            <input type="submit">
-        </form>
+    <div class="col text-center bg-info text-white">
+        <label>@Model.Partida.Acertos</label>
+    </div>
+    <div class="col text-center bg-danger text-white">
+        <label>@Model.Partida.Erros</label>
     </div>
 </div>
+
+@if (Model.Partida.FimDeJogo())
+{
+    <div class="text-center">
+        <div class="row fs-1">
+            @if (@Model.Partida.PontuacaoFinal() > 0)
+            {
+                <label>Parabéns @Model.Partida.Jogador.Nome!!!</label>
+            }
+        </div>
+        <div class="row fs-2 text-info">
+            @if (@Model.Partida.PontuacaoFinal() == 0)
+            {
+                <label class="text-danger">Você não fez nenhum ponto!</label>
+            }
+            else if (@Model.Partida.PontuacaoFinal() == 1)
+            {
+                <label>Você fez @Model.Partida.PontuacaoFinal() ponto.</label>
+            }
+            else if (@Model.Partida.Acertos == Model.Partida.Jogos.Count)
+            {
+                <label>Você é o MÁXIMO!! Fez @Model.Partida.PontuacaoFinal() pontos.</label>
+            }
+            else
+            {
+                <label>Você fez @Model.Partida.PontuacaoFinal() pontos.</label>
+            }
+        </div>
+
+        <div class="row mt-2">
+            <div class="center-block">
+                <a class="btn btn-outline-danger" asp-area="" asp-page="/Somar" asp-page-handler="Reiniciar">Reiniciar</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+
+            <div class="text-center" style="font-size: 50px">
+                <label>@Model.Operacao.ExpressionNoResult()</label>
+                <label> = ?</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form method="post" class="text-center">
+
+                @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
+                {
+                    <input type="hidden" name="Digits[@i]" value="@Model.Operacao.Digits[i]" />
+                }
+
+                <div class="form-group">
+                    <label asp-for="@Model.Resultado" class="control-label"></label>
+                    <input asp-for="@Model.Resultado" class="form-control" value="" autofocus />
+                    <span asp-validation-for="@Model.Resultado" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <input type="submit" class="btn btn-primary">
+                    <a class="btn btn-outline-danger" asp-area="" asp-page="/Somar" asp-page-handler="Reiniciar">Reiniciar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div class="resultados mt-3">
+    @for (int i = Model.Partida.Jogos.Count - 1; i >= 0; i--)
+    {
+        <div class="row mt">
+            <div class="col-12 text-center">
+                @if (Model.Partida.Jogos[i].Acerto)
+                {
+                    <label class="jogada-certa">@Model.Partida.Jogos[i].Expressao</label>
+                }
+                else
+                {
+                    <label class="jogada-errada">@Model.Partida.Jogos[i].Expressao</label>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

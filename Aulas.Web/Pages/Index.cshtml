@@ -4,7 +4,32 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col text-center">
+        <h1 class="display-4">Bem-Vindo</h1>
+    </div>
 </div>
+
+<div class="row mt-5">
+    <div class="col-6 offset-3">
+        <div class="text-center">
+
+            <form method="post">
+
+                <div class="form-group">
+                    <label asp-for="@Model.Jogador.Nome" class="control-label"></label>
+                    <input asp-for="@Model.Jogador.Nome" class="form-control" autofocus />
+                    <span asp-validation-for="@Model.Jogador.Nome" class="text-danger"></span>
+                </div>
+
+                <input type="submit" class="btn btn-primary mt-3" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

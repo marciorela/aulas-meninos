@@ -79,13 +79,13 @@ else
 
                 <div class="form-group">
                     <label asp-for="@Model.Resultado" class="control-label"></label>
-                    <input asp-for="@Model.Resultado" class="form-control" value="" autofocus />
+                    <input asp-for="@Model.Resultado" class="form-control" value="" autofocus inputmode="numeric"/>
                     <span asp-validation-for="@Model.Resultado" class="text-danger"></span>
                 </div>
 
                 <div class="mt-2">
                     <input type="submit" class="btn btn-primary">
-                    <a class="btn btn-outline-danger" asp-area="" asp-page="/Somar" asp-page-handler="Reiniciar">Reiniciar</a>
+                    @*<a class="btn btn-outline-danger" asp-area="" asp-page="/Somar" asp-page-handler="Reiniciar">Reiniciar</a>*@
                 </div>
             </form>
         </div>
@@ -103,7 +103,7 @@ else
                 }
                 else
                 {
-                    <label class="jogada-errada">@Model.Partida.Jogos[i].Expressao</label>
+                    <label class="bg-danger text-white">@Model.Partida.Jogos[i].Expressao</label>
                 }
             </div>
         </div>

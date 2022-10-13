@@ -8,11 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Aulas.Web.Pages
 {
-    public class SomarModel : PageModel
+    public class PartidaModel : PageModel
     {
-        [BindProperty]
-        public Soma Operacao { get; set; } = new Soma();
-
         [BindProperty]
         [Required(ErrorMessage = "Por favor, informe o resultado")]
         public int Resultado { get; set; }
@@ -33,9 +30,8 @@ namespace Aulas.Web.Pages
             }
         }
 
-        public SomarModel(IConfiguration config)
+        public PartidaModel(IConfiguration config)
         {
-            GenerateNumbers();
         }
 
         public void OnGet()
@@ -51,13 +47,12 @@ namespace Aulas.Web.Pages
                 return RedirectToPage("Index");
             }
 
-            if (ModelState.IsValid && !Partida.FimDeJogo())
+            if (ModelState.IsValid && !Partida.FimDePartida())
             {
-                Partida.NovaJogada(Operacao.ExpressionNoResult() + " = " + Resultado.ToString(), Resultado == Operacao.Result());
+                Partida.NovaResposta(Resultado.ToString());
                 Partida.SaveToSession(HttpContext.Session);
 
                 SetDataBeforeRender();
-                GenerateNumbers();
             }
 
             return Page();
@@ -75,11 +70,6 @@ namespace Aulas.Web.Pages
             Partida.SaveToSession(HttpContext.Session);
 
             return Page();
-        }
-
-        private void GenerateNumbers()
-        {
-            Operacao.Random(90, 9);
         }
 
         private void SetDataBeforeRender()

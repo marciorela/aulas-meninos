@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Aulas.Domain\Aulas.Domain.csproj" />
     <ProjectReference Include="..\Aulas.Extensions\Aulas.Extensions.csproj" />
+    <ProjectReference Include="..\Aulas.Jogos\Aulas.Jogos.csproj" />
   </ItemGroup>
 
 </Project>

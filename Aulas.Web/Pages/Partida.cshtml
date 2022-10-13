@@ -1,5 +1,5 @@
 ﻿@page
-@model Aulas.Web.Pages.SomarModel
+@model Aulas.Web.Pages.PartidaModel
 @{
 }
 
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-@if (Model.Partida.FimDeJogo())
+@if (Model.Partida.FimDePartida())
 {
     <div class="text-center">
         <div class="row fs-1">
@@ -51,7 +51,7 @@
 
         <div class="row mt-2">
             <div class="center-block">
-                <a class="btn btn-outline-danger" asp-area="" asp-page="/Somar" asp-page-handler="Reiniciar">Reiniciar</a>
+                <a class="btn btn-outline-danger" asp-area="" asp-page="/Partida" asp-page-handler="Reiniciar">Reiniciar</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@ else
         <div class="col-12">
 
             <div class="text-center" style="font-size: 50px">
-                <label>@Model.Operacao.ExpressionNoResult()</label>
+                <label>@Model.Partida.Jogos.Last().Pergunta</label>
                 <label> = ?</label>
             </div>
         </div>
@@ -72,14 +72,9 @@ else
         <div class="col-6 offset-3">
             <form method="post" class="text-center">
 
-                @for (var i = 0; i <= Model.Operacao.Digits.Count - 1; i++)
-                {
-                    <input type="hidden" name="Digits[@i]" value="@Model.Operacao.Digits[i]" />
-                }
-
                 <div class="form-group">
                     <label asp-for="@Model.Resultado" class="control-label"></label>
-                    <input asp-for="@Model.Resultado" class="form-control" value="" autofocus inputmode="numeric"/>
+                    <input asp-for="@Model.Resultado" class="form-control" value="" autofocus inputmode="numeric" />
                     <span asp-validation-for="@Model.Resultado" class="text-danger"></span>
                 </div>
 
@@ -95,18 +90,21 @@ else
 <div class="resultados mt-3">
     @for (int i = Model.Partida.Jogos.Count - 1; i >= 0; i--)
     {
-        <div class="row mt">
-            <div class="col-12 text-center">
-                @if (Model.Partida.Jogos[i].Acerto)
-                {
-                    <label class="jogada-certa">@Model.Partida.Jogos[i].Expressao</label>
-                }
-                else
-                {
-                    <label class="bg-danger text-white">@Model.Partida.Jogos[i].Expressao</label>
-                }
+        if (@Model.Partida.Jogos[i].RespostaInformada != "")
+        {
+            <div class="row mt">
+                <div class="col-12 text-center">
+                    @if (Model.Partida.Jogos[i].Acerto)
+                    {
+                        <label class="jogada-certa">@Model.Partida.Jogos[i].Pergunta = @Model.Partida.Jogos[i].RespostaInformada</label>
+                    }
+                    else
+                    {
+                        <label class="bg-danger text-white">@Model.Partida.Jogos[i].Pergunta = @Model.Partida.Jogos[i].RespostaInformada</label>
+                    }
+                </div>
             </div>
-        </div>
+        }
     }
 </div>
 

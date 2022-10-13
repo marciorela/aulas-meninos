@@ -1,5 +1,6 @@
 ﻿using Aulas.Domain.Models;
 using Aulas.Extensions;
+using Aulas.Jogos.Soma;
 using Aulas.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,7 @@ namespace Aulas.Web.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private Partida _partida;
 
         [BindProperty]
         public Jogador Jogador { get; set; }
@@ -24,6 +26,8 @@ namespace Aulas.Web.Pages
             //    return RedirectToPage("Somar");
             //}
 
+            
+
             return Page();
         }
 
@@ -34,11 +38,16 @@ namespace Aulas.Web.Pages
                 return Page();                     
             }
 
-            var partida = new Partida(Jogador);
+            _partida = new Partida(new Jogador());
+            _partida.Iniciar();
+            //_partida.Jogos.Add(new SomaNivel1());
+//            _partida.SaveToSession(HttpContext.Session);
 
-            HttpContext.Session.Set<Partida>("Partida", partida);
-            
-            return RedirectToPage("Somar");
+//            _partida = Partida.ReadFromSession(HttpContext.Session);
+            _partida.Jogador.Nome = Jogador.Nome;
+            _partida.SaveToSession(HttpContext.Session);
+
+            return RedirectToPage("Partida");
         }
     }
 }

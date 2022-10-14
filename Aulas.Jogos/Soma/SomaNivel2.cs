@@ -2,24 +2,23 @@
 {
     public class SomaNivel2 : Jogo
     {
-        private string _resposta = "";
+        private readonly string _pergunta = "";
+        private readonly string _resposta = "";
 
-        public override string Descricao()
-        {
-            return "Soma Nível 2: Dois números cuja somatória seja inferior a 100.";
-        }
+        public override string Pergunta => _pergunta;
 
-        public override string Titulo()
-        {
-            return "Soma Nivel 2";
-        }
+        public override string Resposta => _resposta;
 
-        public override string Pergunta()
+        public override string Titulo => "Soma Nivel 2";
+
+        public override string Descricao => "Soma Nível 2: Dois números cuja somatória seja inferior a 100.";
+
+        public SomaNivel2()
         {
             string expr;
-            var total = 0;
             int[] digitsRandom = { 99, 99 };
             var digits = new List<int>();
+            int total;
 
             while (true)
             {
@@ -45,15 +44,8 @@
                 }
 
             }
+            _pergunta = expr.Trim();
             _resposta = total.ToString();
-
-            return expr.Trim();
         }
-
-        public override string Resposta()
-        {
-            return _resposta;
-        }
-
     }
 }

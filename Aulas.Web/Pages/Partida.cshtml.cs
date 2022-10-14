@@ -43,8 +43,6 @@ namespace Aulas.Web.Pages
                 return RedirectToPage("Index");
             }
 
-            SetDataBeforeRender();
-
             return Page();
         }
 
@@ -60,8 +58,6 @@ namespace Aulas.Web.Pages
             {
                 Partida.NovaResposta(Resultado.ToString());
                 Partida.SaveToSession(HttpContext.Session);
-
-                SetDataBeforeRender();
             }
 
             return Page();
@@ -81,10 +77,11 @@ namespace Aulas.Web.Pages
             return Page();
         }
 
-        private void SetDataBeforeRender()
+        public override PageResult Page()
         {
             ViewData["Name"] = Partida.Jogador.Nome;
-        }
 
+            return base.Page();
+        }
     }
 }

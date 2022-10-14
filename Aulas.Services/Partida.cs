@@ -55,9 +55,14 @@ public class Partida
 
     private void NovoJogo()
     {
-        var jogo = TipoJogo.Random();
+        // ADICIONAR SOMENTE SE ESSA PERGUNTA JÁ NÃO TIVER SIDO FEITA
+        Jogo jogo;
+        do
+        {
+            jogo = TipoJogo.Random();
+        } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 
-        Jogos.Add(new InfoJogo(jogo.Pergunta(), jogo.Resposta(), jogo.Titulo()));
+        Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo));
     }
 
     public void NovaResposta(string expressao)

@@ -2,29 +2,33 @@
 {
     public class Jogo
     {
+        public virtual string Pergunta { 
+            get { 
+                return "Pergunta não definida."; 
+            } 
+        }
+
+        public virtual string Resposta { 
+            get { 
+                return "Resposta não definida."; 
+            } 
+        }
+
+        public virtual string Titulo { 
+            get { 
+                return "Título não definida."; 
+            } 
+        }
+
+        public virtual string Descricao { 
+            get { 
+                return "Descrição não definida."; 
+            } 
+        }
+
         public Jogo()
         {
 
-        }
-
-        public virtual string Titulo()
-        {
-            return "Título não definido.";
-        }
-
-        public virtual string Descricao()
-        {
-            return "Descrição não definida.";
-        }
-
-        public virtual string Pergunta()
-        {
-            return "Pergunta não definida.";
-        }
-
-        public virtual string Resposta()
-        {
-            return "Resposta não definida.";
         }
 
     }

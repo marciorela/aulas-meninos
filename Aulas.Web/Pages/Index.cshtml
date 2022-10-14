@@ -11,18 +11,40 @@
 </div>
 
 <div class="row mt-5">
+
     <div class="col-6 offset-3">
-        <div class="text-center">
+
+        @if (Model.ErrorMessage is not null)
+        {
+            <div class="text-center mb-4">
+                <span class="text-danger">@Model.ErrorMessage</span>
+            </div>
+        }
+
+        <div class="">
 
             <form method="post">
 
-                <div class="form-group">
+                <div class="form-group text-center">
                     <label asp-for="@Model.Jogador.Nome" class="control-label"></label>
                     <input asp-for="@Model.Jogador.Nome" class="form-control" autofocus />
                     <span asp-validation-for="@Model.Jogador.Nome" class="text-danger"></span>
                 </div>
 
-                <input type="submit" class="btn btn-primary mt-3" />
+                <div class="">
+                    <label class="mt-4 mb-2 bg-secondary bg-opacity-25 w-100">Opções:</label>
+                    @for (var i = 0; i <= Model.Tipos.Count - 1; i++)
+                    {
+                        <div class="form-check">
+                            <input asp-for="@Model.Checks[i]" class="form-check-input" type="checkbox" />
+                            <label asp-for="@Model.Checks[i]" class="form-check-label">@Model.Tipos[i].Descricao()</label>
+                        </div>
+                    }
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary mt-3" />
+                </div>
             </form>
         </div>
     </div>
@@ -32,4 +54,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+    }

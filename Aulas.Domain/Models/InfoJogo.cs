@@ -15,6 +15,8 @@ namespace Aulas.Domain.Models
 
         public string RespostaInformada { get; set; } = "";
         
+        public string Titulo { get; set; } = "";
+        
         public bool Acerto
         {
             get
@@ -28,10 +30,11 @@ namespace Aulas.Domain.Models
 
         }
 
-        public InfoJogo(string pergunta, string resposta)
+        public InfoJogo(string pergunta, string resposta, string titulo)
         {
             Pergunta = pergunta;
             RespostaPergunta = resposta;
+            Titulo = titulo;
         }
 
         public void GravarResposta(string resposta)

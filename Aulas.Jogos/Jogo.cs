@@ -7,14 +7,24 @@
 
         }
 
+        public virtual string Titulo()
+        {
+            return "Título não definido.";
+        }
+
+        public virtual string Descricao()
+        {
+            return "Descrição não definida.";
+        }
+
         public virtual string Pergunta()
         {
-            return "";
+            return "Pergunta não definida.";
         }
 
         public virtual string Resposta()
         {
-            return "";
+            return "Resposta não definida.";
         }
 
     }

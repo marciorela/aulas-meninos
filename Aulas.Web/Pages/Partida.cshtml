@@ -41,7 +41,7 @@
             }
             else if (@Model.Partida.Acertos == Model.Partida.Jogos.Count)
             {
-                <label>Você é o MÁXIMO!! Fez @Model.Partida.PontuacaoFinal() pontos.</label>
+                <label>Você é o MÁXIMO!! Fez @Model.Partida.PontuacaoFinal() pontos!!</label>
             }
             else
             {
@@ -60,6 +60,10 @@ else
 {
     <div class="row">
         <div class="col-12">
+
+            <div class="text-center" style="font-size: 20px">
+                <label>@Model.Partida.Jogos.Last().Titulo</label>
+            </div>
 
             <div class="text-center" style="font-size: 50px">
                 <label>@Model.Partida.Jogos.Last().Pergunta</label>

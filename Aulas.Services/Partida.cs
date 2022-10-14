@@ -55,30 +55,9 @@ public class Partida
 
     private void NovoJogo()
     {
-        //var randomGame = new Random(Partida.Jogos.Count).Next();
+        var jogo = TipoJogo.Random();
 
-        //var tipoJogo = new Faker().PickRandom<ETipo>();
-
-        var ass = Assembly.GetAssembly(typeof(Jogo))!;
-        var list = ass.GetTypes().Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo)).ToList();
-        //var list = ass.GetTypes().Where(x => x.IsClass).ToList();
-
-        //        for (int i = 0; i < qtdJogos; i++)
-        //        {
-
-        var randomGame = new Random().Next(list.Count);
-        var jogo = (Jogo)Activator.CreateInstance(list[randomGame])!;
-
-        Jogos.Add(new InfoJogo(jogo.Pergunta(), jogo.Resposta()));
-
-        //foreach (var t in ass.GetTypes().Where(x => x.IsClass && typeof(IJogo).IsAssignableFrom(x)))
-        //{
-        //    var jogo = (IJogo)Activator.CreateInstance(t)!;
-        //    if (jogo.TipoDeJogo == tipoJogo)
-        //    {
-
-        //    }
-        //}
+        Jogos.Add(new InfoJogo(jogo.Pergunta(), jogo.Resposta(), jogo.Titulo()));
     }
 
     public void NovaResposta(string expressao)

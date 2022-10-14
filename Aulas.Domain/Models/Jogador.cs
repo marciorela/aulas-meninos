@@ -10,7 +10,7 @@ namespace Aulas.Domain.Models
     public class Jogador
     {
         [Required(ErrorMessage = "Nome deve ser informado")]
-        [StringLength(40)]
+        [StringLength(40, ErrorMessage = "Nome inválido.")]
         [Display(Name = "Informe seu nome")]
         public string? Nome { get; set; }
     }

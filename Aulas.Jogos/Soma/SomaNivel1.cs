@@ -4,6 +4,16 @@
     {
         private string _resposta = "";
 
+        public override string Descricao()
+        {
+            return "Soma Nível 1: O primeiro número até 90 e o segundo número até 9.";
+        }
+
+        public override string Titulo()
+        {
+            return "Soma Nivel 1";
+        }
+
         public override string Pergunta()
         {
             var total = 0;

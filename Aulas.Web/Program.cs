@@ -1,6 +1,9 @@
 using Aulas.Services;
+using MR.Log;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.MRConfigureLogService();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -34,4 +37,12 @@ app.UseSession();
 
 app.MapRazorPages();
 
-app.Run();
+MRLog.ConfigureLogMain();
+try
+{
+    app.Run();
+}
+finally
+{
+    MRLog.CloseAndFlush();
+}

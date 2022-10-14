@@ -15,6 +15,7 @@ namespace Aulas.Web.Pages
         public int Resultado { get; set; }
 
         private Partida _partida;
+        public readonly ILogger _logger;
 
         public Partida Partida { get
             {
@@ -30,13 +31,21 @@ namespace Aulas.Web.Pages
             }
         }
 
-        public PartidaModel(IConfiguration config)
+        public PartidaModel(ILogger<PartidaModel> logger)
         {
+            _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (Partida is null)
+            {
+                return RedirectToPage("Index");
+            }
+
             SetDataBeforeRender();
+
+            return Page();
         }
 
         public IActionResult OnPost()

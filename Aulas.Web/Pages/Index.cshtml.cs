@@ -31,6 +31,7 @@ namespace Aulas.Web.Pages
 
         public IActionResult OnGet()
         {
+            _logger.LogInformation("Iniciando aplicação");
 
             if (Request.Cookies.TryGetValue("Nome", out string nome))
             {
@@ -75,6 +76,7 @@ namespace Aulas.Web.Pages
             }
             var opcoes = string.Join(",", listOpcoes);
 
+            _logger.LogInformation("Key:{sessionId}, iniciando partida: {nome}, {opcoes}", HttpContext.Session.Id, Jogador.Nome, opcoes);
             SaveCookie(opcoes);
 
             TipoJogo.Filter(listOpcoes);

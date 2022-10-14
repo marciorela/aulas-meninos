@@ -23,6 +23,8 @@
 
 @if (Model.Partida.FimDePartida())
 {
+    Model._logger.LogInformation("Key:{sessionId}, Fim da partida: {pontos}", HttpContext.Session.Id, @Model.Partida.PontuacaoFinal().ToString());
+
     <div class="text-center">
         <div class="row fs-1">
             @if (@Model.Partida.PontuacaoFinal() > 0)
@@ -58,6 +60,8 @@
 }
 else
 {
+    Model._logger.LogInformation("Key:{sessionId}, Pergunta: {pergunta} = {resposta}", HttpContext.Session.Id, Model.Partida.Jogos.Last().Pergunta, Model.Partida.Jogos.Last().RespostaPergunta);
+
     <div class="row">
         <div class="col-12">
 

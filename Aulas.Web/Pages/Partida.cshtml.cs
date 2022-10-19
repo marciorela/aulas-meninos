@@ -60,7 +60,8 @@ namespace Aulas.Web.Pages
                 Partida.SaveToSession(HttpContext.Session);
             }
 
-            return Page();
+            // EVITAR O REENVIO DO FORMULÁRIO AO PRESSIONAR F5 NO BROWSER
+            return RedirectToPage("Partida");
         }
 
         public IActionResult OnGetReiniciar()

@@ -80,6 +80,7 @@ namespace Aulas.Web.Pages
         public override PageResult Page()
         {
             ViewData["Name"] = Partida.Jogador.Nome;
+            ViewData["PodeReiniciar"] = (Partida.FimDePartida() ? "N" : "S");
 
             return base.Page();
         }

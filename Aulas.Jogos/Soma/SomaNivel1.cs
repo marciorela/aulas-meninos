@@ -9,32 +9,32 @@
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Soma Nivel 1";
+        public override string Titulo => "Soma 1";
 
-        public override string Descricao => "Soma Nível 1: O primeiro número até 90 e o segundo número até 9.";
+        public override string Descricao => $"{Titulo}: O primeiro número até 90 e o segundo número até 9.";
 
         public SomaNivel1()
         {
-            var total = 0;
             int[] digitsRandom = { 90, 9 };
-            var digits = new List<int>();
 
-            foreach (var digitRandom in digitsRandom)
+            string expr;
+            int total;
+            do
             {
-                digits.Add(new Random().Next(digitRandom + 1));
-            }
+                expr = "";
+                total = 0;
+                foreach (var digitRandom in digitsRandom)
+                {
+                    var digit = new Random().Next(digitRandom + 1);
 
-            var expr = "";
-            foreach (var digit in digits)
-            {
-                total += digit;
-                expr += digit.ToString() + " + ";
-            }
-            expr = expr.Substring(0, expr.Length - 3);
+                    total += digit;
+                    expr += digit.ToString() + " + ";
+                }
+            } while (total == 0);
+            expr = expr[..^3];
 
             _pergunta = expr.Trim();
             _resposta = total.ToString();
         }
-
     }
 }

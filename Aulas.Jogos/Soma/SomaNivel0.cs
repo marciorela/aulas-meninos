@@ -1,6 +1,6 @@
 ﻿namespace Aulas.Jogos.Soma
 {
-    public class SomaNivel2 : Jogo
+    public class SomaNivel0 : Jogo
     {
         private readonly string _pergunta = "";
         private readonly string _resposta = "";
@@ -9,16 +9,16 @@
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Soma 2";
+        public override string Titulo => "Soma Simples";
 
-        public override string Descricao => $"{Titulo}: Dois números cuja somatória seja inferior a 100.";
+        public override string Descricao => $"{Titulo}: Dois números com um algarismo cada.";
 
-        public SomaNivel2()
+        public SomaNivel0()
         {
-            int[] digitsRandom = { 99, 99 };
+            int[] digitsRandom = { 9, 9 };
 
-            int total;
             string expr;
+            int total;
             do
             {
                 expr = "";
@@ -30,7 +30,7 @@
                     total += digit;
                     expr += digit.ToString() + " + ";
                 }
-            } while (total == 0 || total >= 100);
+            } while (total == 0);
             expr = expr[..^3];
 
             _pergunta = expr.Trim();

@@ -13,7 +13,7 @@ namespace Aulas.Services
     {
         private static readonly List<string> _filter = new();
 
-        public static List<Type> ListTypes()
+        private static List<Type> ListTypes()
         {
             var ass = Assembly.GetAssembly(typeof(Jogo))!;
             var list = ass.GetTypes().Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo) && (_filter.Count == 0 || _filter.Any(f => f == x.ToString()))).ToList();
@@ -28,7 +28,11 @@ namespace Aulas.Services
             var instances = new List<Jogo>();
             foreach (var type in list)
             {
-                instances.Add((Jogo)Activator.CreateInstance(type)!);
+                var jogo = (Jogo)Activator.CreateInstance(type)!;
+                if (jogo.Enabled)
+                {
+                    instances.Add(jogo);
+                }
             }
 
             return instances;
@@ -38,8 +42,13 @@ namespace Aulas.Services
         {
             var list = ListTypes();
 
-            var randomGame = new Random().Next(list.Count);
-            var jogo = (Jogo)Activator.CreateInstance(list[randomGame])!;
+            Jogo jogo;
+            do
+            {
+                var randomGame = new Random().Next(list.Count);
+                jogo = (Jogo)Activator.CreateInstance(list[randomGame])!;
+
+            } while (!jogo.Enabled);
 
             return jogo;
         }

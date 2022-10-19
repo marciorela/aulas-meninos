@@ -20,12 +20,7 @@ public class Partida
 
     public int Erros => CountErros();
 
-    //public List<Resposta> Respostas { get; set; } = new();
-
-    public List<InfoJogo> Jogos { get; set; } = new();
-   
-
-    //public List<ETipo> TiposDeJogo => Enum.GetValues(typeof(ETipo)).Cast<ETipo>().ToList();
+    public List<Jogo> Jogos { get; set; } = new();
 
     public Jogador Jogador => _jogador;
 
@@ -62,7 +57,8 @@ public class Partida
             jogo = TipoJogo.Random();
         } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 
-        Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo));
+        //Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo, jogo.TipoPergunta));
+        Jogos.Add(jogo);
     }
 
     public void NovaResposta(string expressao)

@@ -12,7 +12,7 @@ namespace Aulas.Web.Pages
     {
         [BindProperty]
         [Required(ErrorMessage = "Por favor, informe o resultado")]
-        public int Resultado { get; set; }
+        public string Resultado { get; set; }
 
         private Partida _partida;
         public readonly ILogger _logger;

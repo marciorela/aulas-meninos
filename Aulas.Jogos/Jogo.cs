@@ -19,6 +19,8 @@ namespace Aulas.Jogos
 
         public virtual string Descricao { get; set; } = "Descricao não definida";
 
+        public virtual int MaxPerguntas { get; set; } = int.MaxValue;
+
         public bool Acerto
         {
             get

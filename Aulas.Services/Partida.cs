@@ -14,10 +14,11 @@ namespace Aulas.Services;
 
 public class Partida
 {
-    private readonly int qtdJogos;
     private Jogador _jogador;
     private readonly IConfiguration _config;
 
+    public int qtdJogos { get; set; } = 0;
+    
     public int Acertos => CountAcertos();
 
     public int Erros => CountErros();
@@ -36,13 +37,11 @@ public class Partida
             //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
             //.AddEnvironmentVariables()
             .Build();
-
-        qtdJogos = _config.GetValue<int>("Perguntas");
     }
 
     public bool FimDePartida()
     {
-        return Jogos.Count(x => x.RespostaInformada != "") >= qtdJogos;
+        return (qtdJogos > 0 && Jogos.Count(x => x.RespostaInformada != "") >= qtdJogos);
     }
 
     public int PontuacaoFinal()
@@ -56,7 +55,26 @@ public class Partida
     {
         Jogos.Clear();
 
+        qtdJogos = Math.Min(
+            _config.GetValue<int>("Perguntas"),
+            MaxPerguntas()
+        );
+
         NovoJogo();
+    }
+
+    private int MaxPerguntas()
+    {
+        // CONTA O MÁXIMO DE JOGOS QUE ESSA PARTIDA PODE TER, BASEADO NO FILTRO ESCOLHIDO
+        var max = 0;
+        var jogos = TipoJogo.ListInstances();
+        foreach (var jogo in jogos)
+        {
+            jogo.PreparaPergunta(_config);
+            max += jogo.MaxPerguntas;
+        }
+
+        return max;
     }
 
     private void NovoJogo()
@@ -69,7 +87,6 @@ public class Partida
             jogo.PreparaPergunta(_config);
         } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 
-        //Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo, jogo.TipoPergunta));
         Jogos.Add(jogo);
     }
 

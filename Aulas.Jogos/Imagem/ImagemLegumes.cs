@@ -10,8 +10,8 @@ namespace Aulas.Jogos.Imagem
 {
     public class ImagemLegumes: Jogo
     {
-        private string _pergunta;
-        private string _resposta;
+        private string _pergunta = "";
+        private string _resposta = "";
         private List<FromSettings> Link = new();
 
         public override bool Enabled => true;
@@ -27,6 +27,8 @@ namespace Aulas.Jogos.Imagem
         public override ETipoPergunta TipoPergunta => ETipoPergunta.Imagem;
 
         public override ETipoResposta TipoResposta => ETipoResposta.Text;
+
+        public override int MaxPerguntas => Link.Count;
 
         public override void PreparaPergunta(IConfiguration config)
         {

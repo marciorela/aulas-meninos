@@ -28,6 +28,8 @@ namespace Aulas.Jogos.Imagem
 
         public override ETipoResposta TipoResposta => ETipoResposta.Text;
 
+        public override int MaxPerguntas => Link.Count;
+
         public override void PreparaPergunta(IConfiguration config)
         {
             Link = config.GetSection("Imagens:Animais").Get<List<FromSettings>>();

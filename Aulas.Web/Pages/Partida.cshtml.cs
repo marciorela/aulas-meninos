@@ -11,7 +11,8 @@ namespace Aulas.Web.Pages
     public class PartidaModel : PageModel
     {
         [BindProperty]
-        [Required(ErrorMessage = "Por favor, informe o resultado")]
+        [Required(ErrorMessage = "Por favor, informe a resposta")]
+        [Display(Name = "Resposta")]
         public string Resultado { get; set; }
 
         private Partida _partida;

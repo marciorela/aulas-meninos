@@ -15,7 +15,7 @@ namespace Aulas.Jogos.Imagem
 
         private readonly List<FromSettings> Link = new();
 
-        public override bool Enabled => false;
+        public override bool Enabled => true;
 
         public override string Pergunta => _pergunta;
 

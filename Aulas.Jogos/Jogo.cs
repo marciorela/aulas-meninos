@@ -31,6 +31,11 @@ namespace Aulas.Jogos
 
         public string RespostaInformada { get; set; } = "";
 
+        public virtual void PreparaPergunta()
+        {
+
+        }
+
         public void GravarResposta(string resposta)
         {
             RespostaInformada = resposta;

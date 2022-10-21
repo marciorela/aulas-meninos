@@ -55,6 +55,7 @@ public class Partida
         do
         {
             jogo = TipoJogo.Random();
+            jogo.PreparaPergunta();
         } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 
         //Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo, jogo.TipoPergunta));

@@ -10,10 +10,9 @@ namespace Aulas.Jogos.Imagem
 {
     public class ImagemAnimais: Jogo
     {
-        private readonly string _pergunta;
-        private readonly string _resposta;
-
-        private readonly List<FromSettings> Link = new();
+        private string _pergunta = "";
+        private string _resposta = "";
+        private List<FromSettings> Link = new();
 
         public override bool Enabled => true;
 
@@ -29,7 +28,7 @@ namespace Aulas.Jogos.Imagem
 
         public override ETipoResposta TipoResposta => ETipoResposta.Text;
 
-        public ImagemAnimais()
+        public override void PreparaPergunta()
         {
             Link = _config.GetSection("Imagens:Animais").Get<List<FromSettings>>();
 
@@ -38,6 +37,5 @@ namespace Aulas.Jogos.Imagem
             _pergunta = Link[indexPergunta].Link!;
             _resposta = Link[indexPergunta].Resposta!;
         }
-
     }
 }

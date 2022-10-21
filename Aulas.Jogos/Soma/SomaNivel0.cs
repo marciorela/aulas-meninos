@@ -2,8 +2,8 @@
 {
     public class SomaNivel0 : Jogo
     {
-        private readonly string _pergunta = "";
-        private readonly string _resposta = "";
+        private string _pergunta = "";
+        private string _resposta = "";
 
         public override string Pergunta => _pergunta;
 
@@ -14,6 +14,10 @@
         public override string Descricao => $"{Titulo}: Dois números com um algarismo cada.";
 
         public SomaNivel0()
+        {
+        }
+
+        public override void PreparaPergunta()
         {
             int[] digitsRandom = { 9, 9 };
 

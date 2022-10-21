@@ -28,9 +28,9 @@ namespace Aulas.Jogos.Imagem
 
         public override ETipoResposta TipoResposta => ETipoResposta.Text;
 
-        public override void PreparaPergunta()
+        public override void PreparaPergunta(IConfiguration config)
         {
-            Link = _config.GetSection("Imagens:Frutas").Get<List<FromSettings>>();
+            Link = config.GetSection("Imagens:Frutas").Get<List<FromSettings>>();
 
             var indexPergunta = new Random().Next(Link.Count);
 

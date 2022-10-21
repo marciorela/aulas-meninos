@@ -1,4 +1,6 @@
-﻿namespace Aulas.Jogos.Soma
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Aulas.Jogos.Soma
 {
     public class SomaNivel0 : Jogo
     {
@@ -17,7 +19,7 @@
         {
         }
 
-        public override void PreparaPergunta()
+        public override void PreparaPergunta(IConfiguration config)
         {
             int[] digitsRandom = { 9, 9 };
 

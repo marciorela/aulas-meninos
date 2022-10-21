@@ -1,4 +1,6 @@
-﻿namespace Aulas.Jogos.Soma
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Aulas.Jogos.Soma
 {
     public class SomaNivel2 : Jogo
     {
@@ -13,7 +15,7 @@
 
         public override string Descricao => $"{Titulo}: Dois números cuja somatória seja inferior a 100.";
 
-        public override void PreparaPergunta()
+        public override void PreparaPergunta(IConfiguration config)
         {
             int[] digitsRandom = { 99, 99 };
 

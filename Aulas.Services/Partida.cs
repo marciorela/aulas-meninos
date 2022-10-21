@@ -4,6 +4,7 @@ using Aulas.Jogos;
 using Aulas.Jogos.Soma;
 using Bogus;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System.Collections;
 using System.Net.Http;
 using System.Reflection;
@@ -13,8 +14,9 @@ namespace Aulas.Services;
 
 public class Partida
 {
-    const int qtdJogos = 10;
+    private readonly int qtdJogos;
     private Jogador _jogador;
+    private readonly IConfiguration _config;
 
     public int Acertos => CountAcertos();
 
@@ -27,6 +29,15 @@ public class Partida
     public Partida(Jogador jogador)
     {
         _jogador = jogador;
+
+        _config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            //.AddEnvironmentVariables()
+            .Build();
+
+        qtdJogos = _config.GetValue<int>("Perguntas");
     }
 
     public bool FimDePartida()
@@ -55,7 +66,7 @@ public class Partida
         do
         {
             jogo = TipoJogo.Random();
-            jogo.PreparaPergunta();
+            jogo.PreparaPergunta(_config);
         } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 
         //Jogos.Add(new InfoJogo(jogo.Pergunta, jogo.Resposta, jogo.Titulo, jogo.TipoPergunta));

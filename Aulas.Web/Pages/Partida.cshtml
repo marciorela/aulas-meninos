@@ -109,19 +109,19 @@ else
                         <div class="row p-1" style="height: 53px">
 
                             <div class="col-6 d-flex align-items-center justify-content-end mh-100 p-0">
-                                <pergunta class="mh-100" tipo="@Model.Partida.Jogos[i].TipoPergunta" value="@Model.Partida.Jogos[i].Pergunta" />
+                                <pergunta class="mh-100 me-2" tipo="@Model.Partida.Jogos[i].TipoPergunta" value="@Model.Partida.Jogos[i].Pergunta" />
                             </div>
 
                             <div class="col-6 d-flex align-items-center mh-100 p-2">
                                 <span> = </span>
                                 
                                 <div class="ms-2">
-                                    <span class="h-100">@Model.Partida.Jogos[i].RespostaInformada</span>
+                                    <span class="h-100 ps-2 pe-2">@Model.Partida.Jogos[i].RespostaInformada</span>
 
                                     @if (!Model.Partida.Jogos[i].Acerto && Model.Partida.FimDePartida())
                                     {
                                         <br />
-                                        <span class="ps-2 pe-2 h-100 @ClassResposta(true)">@Model.Partida.Jogos[i].Resposta</span>
+                                        <span class="h-100 ps-2 pe-2 @ClassResposta(true)">@Model.Partida.Jogos[i].Resposta</span>
                                     }
                                 </div>
                             </div>

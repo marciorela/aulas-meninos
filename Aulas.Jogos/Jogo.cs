@@ -5,8 +5,6 @@ namespace Aulas.Jogos
 {
     public class Jogo
     {
-        protected IConfiguration _config;
-
         public virtual bool Enabled { get; set; } = true;
 
         public virtual ETipoPergunta TipoPergunta { get; set; } = ETipoPergunta.String;
@@ -31,7 +29,7 @@ namespace Aulas.Jogos
 
         public string RespostaInformada { get; set; } = "";
 
-        public virtual void PreparaPergunta()
+        public virtual void PreparaPergunta(IConfiguration config)
         {
 
         }
@@ -43,12 +41,6 @@ namespace Aulas.Jogos
 
         public Jogo()
         {
-            _config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)!.FullName)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                //.AddEnvironmentVariables()
-                .Build();
         }
 
     }

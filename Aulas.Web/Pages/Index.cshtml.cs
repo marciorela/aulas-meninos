@@ -20,7 +20,7 @@ namespace Aulas.Web.Pages
         public Jogador Jogador { get; set; } = new();
 
         [BindProperty]
-        public bool[] Checks { get; set; }
+        public List<TipoChecked> Checks { get; set; } = new();
 
         public List<Jogo> Tipos { get; set; }
 
@@ -41,11 +41,17 @@ namespace Aulas.Web.Pages
             TipoJogo.Filter(new());
             Tipos = TipoJogo.ListInstances();
 
-            if (Request.Cookies.TryGetValue("Opcoes", out string opcoes))
+            if (!Request.Cookies.TryGetValue("Opcoes", out string opcoes))
             {
-                var listOpcoes = opcoes.Split(',').ToList();
-                Checks = Tipos.Select(x => listOpcoes.Any(y => y == x.GetType().ToString())).ToArray();
+                opcoes = "";
             }
+
+            var listOpcoes = opcoes.Split(',').ToList();
+            Checks = Tipos.Select(x => new TipoChecked() {
+                Descricao = x.Descricao,
+                ClassName = x.GetType().ToString(),
+                Checked = listOpcoes.Any(o => o == x.GetType().ToString())
+            }).ToList();
 
             return Page();
         }
@@ -58,7 +64,7 @@ namespace Aulas.Web.Pages
             {
                 return Page();
             }
-            else if (!Checks.Any(x => x))
+            else if (!Checks.Any(x => x.Checked))
             {
                 ErrorMessage = "Informe pelo menos uma opção!";
                 return Page();
@@ -67,11 +73,11 @@ namespace Aulas.Web.Pages
             _partida = new Partida(new Jogador());
 
             var listOpcoes = new List<string>();
-            for (int i = 0; i < Checks.Length; i++)
+            for (int i = 0; i < Checks.Count; i++)
             {
-                if (Checks[i])
+                if (Checks[i].Checked)
                 {
-                    listOpcoes.Add(Tipos[i].GetType().ToString());
+                    listOpcoes.Add(Checks[i].ClassName);
                 }
             }
             var opcoes = string.Join(",", listOpcoes);
@@ -98,5 +104,12 @@ namespace Aulas.Web.Pages
             Response.Cookies.Append("Opcoes", opcoes, options);
             Response.Cookies.Append("Nome", Jogador.Nome, options);
         }
+    }
+
+    public class TipoChecked
+    {
+        public string Descricao { get; set; }
+        public string ClassName { get; set; }
+        public bool Checked { get; set; }
     }
 }

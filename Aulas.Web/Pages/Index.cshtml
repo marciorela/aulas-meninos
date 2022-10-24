@@ -33,11 +33,13 @@
 
                 <div class="">
                     <label class="mt-4 mb-2 bg-secondary bg-opacity-25 w-100">Opções:</label>
-                    @for (var i = 0; i <= Model.Tipos.Count - 1; i++)
+                    @for (var i = 0; i <= Model.Checks.Count - 1; i++)
                     {
+                        <input type="hidden" asp-for="@Model.Checks[i].ClassName"/>
+
                         <div class="form-check">
-                            <input asp-for="@Model.Checks[i]" class="form-check-input" type="checkbox" />
-                            <label asp-for="@Model.Checks[i]" class="form-check-label">@Model.Tipos[i].Descricao</label>
+                            <input asp-for="@Model.Checks[i].Checked" class="form-check-input" type="checkbox" />
+                            <label asp-for="@Model.Checks[i].Checked" class="form-check-label">@Model.Checks[i].Descricao</label>
                         </div>
                     }
                 </div>

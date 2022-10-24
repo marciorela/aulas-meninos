@@ -71,7 +71,7 @@ public class Partida
         foreach (var jogo in jogos)
         {
             jogo.PreparaPergunta(_config);
-            max += jogo.MaxPerguntas;
+            max = Math.Max(max + jogo.MaxPerguntas, int.MaxValue);
         }
 
         return max;

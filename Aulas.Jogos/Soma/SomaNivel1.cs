@@ -11,9 +11,9 @@ namespace Aulas.Jogos.Soma
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Soma 1";
+        public override string Titulo => "Quanto é?";
 
-        public override string Descricao => $"{Titulo}: O primeiro número até 90 e o segundo número até 9.";
+        public override string Descricao => "Soma 1: O primeiro número até 90 e o segundo número até 9.";
 
         public override void PreparaPergunta(IConfiguration config)
         {

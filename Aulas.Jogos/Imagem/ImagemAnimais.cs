@@ -20,7 +20,7 @@ namespace Aulas.Jogos.Imagem
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Imagem - Animais";
+        public override string Titulo => "Que animal é esse?";
 
         public override string Descricao => "Informar o nome dos animais a partir de imagens.";
 

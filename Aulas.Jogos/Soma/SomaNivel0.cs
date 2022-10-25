@@ -11,9 +11,9 @@ namespace Aulas.Jogos.Soma
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Soma Simples";
+        public override string Titulo => "Quanto é?";
 
-        public override string Descricao => $"{Titulo}: Dois números com um algarismo cada.";
+        public override string Descricao => "Soma Simples: Dois números com um algarismo cada.";
 
         public SomaNivel0()
         {

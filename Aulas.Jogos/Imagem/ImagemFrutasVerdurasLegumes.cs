@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aulas.Jogos.Imagem
 {
-    public class ImagemFrutas : Jogo
+    public class ImagemFrutasVerdurasLegumes : Jogo
     {
         private string _pergunta = "";
         private string _resposta = "";
@@ -20,9 +20,9 @@ namespace Aulas.Jogos.Imagem
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Imagem - Frutas";
+        public override string Titulo => "O que é?";
 
-        public override string Descricao => "Informar o nome das frutas a partir de imagens.";
+        public override string Descricao => "Informar o nome das frutas, verduras e legumes a partir de imagens.";
 
         public override ETipoPergunta TipoPergunta => ETipoPergunta.Imagem;
 
@@ -32,7 +32,7 @@ namespace Aulas.Jogos.Imagem
 
         public override void PreparaPergunta(IConfiguration config)
         {
-            Link = config.GetSection("Imagens:Frutas").Get<List<FromSettings>>();
+            Link = config.GetSection("Imagens:Frutas&Verduras&Legumes").Get<List<FromSettings>>();
 
             var indexPergunta = new Random().Next(Link.Count);
 

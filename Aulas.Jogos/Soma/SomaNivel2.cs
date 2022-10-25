@@ -11,9 +11,9 @@ namespace Aulas.Jogos.Soma
 
         public override string Resposta => _resposta;
 
-        public override string Titulo => "Soma 2";
+        public override string Titulo => "Quanto é?";
 
-        public override string Descricao => $"{Titulo}: Dois números cuja somatória seja inferior a 100.";
+        public override string Descricao => "Soma 2: Dois números cuja somatória seja inferior a 100.";
 
         public override void PreparaPergunta(IConfiguration config)
         {

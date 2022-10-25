@@ -25,7 +25,7 @@ namespace Aulas.Jogos
         {
             get
             {
-                return Resposta.ToLower().Equals(RespostaInformada.ToLower());
+                return Resposta.ToLower().Equals(RespostaInformada.Trim().ToLower());
             }
         }
 

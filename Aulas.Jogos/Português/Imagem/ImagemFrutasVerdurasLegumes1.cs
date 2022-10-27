@@ -6,23 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aulas.Jogos.Imagem
+namespace Aulas.Jogos.Português.Imagem
 {
-    public class ImagemAnimais: Jogo
+    public class ImagemFrutasVerdurasLegumes1 : Jogo
     {
-        private string _pergunta = "";
-        private string _resposta = "";
         private List<FromSettings> Link = new();
 
         public override bool Enabled => true;
 
-        public override string Pergunta => _pergunta;
+        public override string Titulo => "O que é?";
 
-        public override string Resposta => _resposta;
-
-        public override string Titulo => "Que animal é esse?";
-
-        public override string Descricao => "Informar o nome dos animais a partir de imagens.";
+        public override string Descricao => "Informar o nome das frutas, verduras e legumes a partir de imagens.";
 
         public override ETipoPergunta TipoPergunta => ETipoPergunta.Imagem;
 
@@ -32,12 +26,12 @@ namespace Aulas.Jogos.Imagem
 
         public override void PreparaPergunta(IConfiguration config)
         {
-            Link = config.GetSection("Imagens:Animais").Get<List<FromSettings>>();
+            Link = config.GetSection("Imagens:Frutas&Verduras&Legumes").Get<List<FromSettings>>();
 
             var indexPergunta = new Random().Next(Link.Count);
 
-            _pergunta = Link[indexPergunta].Link!;
-            _resposta = Link[indexPergunta].Resposta!;
+            Pergunta = Link[indexPergunta].Link!;
+            Resposta.Add(Link[indexPergunta].Resposta!);
         }
     }
 }

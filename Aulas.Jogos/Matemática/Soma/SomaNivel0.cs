@@ -1,23 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Aulas.Jogos.Soma
+namespace Aulas.Jogos.Matematica.Soma
 {
-    public class SomaNivel1 : Jogo
+    public class SomaNivel0 : Jogo
     {
-        private string _pergunta = "";
-        private string _resposta = "";
-
-        public override string Pergunta => _pergunta;
-
-        public override string Resposta => _resposta;
-
         public override string Titulo => "Quanto é?";
 
-        public override string Descricao => "Soma 1: O primeiro número até 90 e o segundo número até 9.";
+        public override string Descricao => "Soma Simples: Dois números com um algarismo cada.";
 
         public override void PreparaPergunta(IConfiguration config)
         {
-            int[] digitsRandom = { 90, 9 };
+            int[] digitsRandom = { 9, 9 };
 
             string expr;
             int total;
@@ -35,8 +28,8 @@ namespace Aulas.Jogos.Soma
             } while (total == 0);
             expr = expr[..^3];
 
-            _pergunta = expr.Trim();
-            _resposta = total.ToString();
+            Pergunta = expr.Trim();
+            Resposta.Add(total.ToString());
         }
     }
 }

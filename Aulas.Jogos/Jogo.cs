@@ -13,7 +13,7 @@ namespace Aulas.Jogos
 
         public virtual string Pergunta { get; set; } = "Pergunta não definida";
 
-        public virtual string Resposta { get; set; } = "Resposta não definida";
+        public virtual List<string> Resposta { get; set; } = new();
 
         public virtual string Titulo { get; set; } = "Titulo não definido";
 
@@ -21,15 +21,15 @@ namespace Aulas.Jogos
 
         public virtual int MaxPerguntas { get; set; } = int.MaxValue;
 
+        public string RespostaInformada { get; set; } = "";
+
         public bool Acerto
         {
             get
             {
-                return Resposta.ToLower().Equals(RespostaInformada.Trim().ToLower());
+                return Resposta.Any(x => x.ToLower().Equals(RespostaInformada.Trim().ToLower()));
             }
         }
-
-        public string RespostaInformada { get; set; } = "";
 
         public virtual void PreparaPergunta(IConfiguration config)
         {

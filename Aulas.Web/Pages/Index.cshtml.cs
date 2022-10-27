@@ -1,7 +1,6 @@
 ﻿using Aulas.Domain.Models;
 using Aulas.Extensions;
 using Aulas.Jogos;
-using Aulas.Jogos.Soma;
 using Aulas.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,7 +21,7 @@ namespace Aulas.Web.Pages
         [BindProperty]
         public List<TipoChecked> Checks { get; set; } = new();
 
-        public List<Jogo> Tipos { get; set; }
+        private List<Jogo> Tipos { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {

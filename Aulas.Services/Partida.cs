@@ -1,7 +1,6 @@
 ﻿using Aulas.Domain.Models;
 using Aulas.Extensions;
 using Aulas.Jogos;
-using Aulas.Jogos.Soma;
 using Bogus;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -71,7 +70,7 @@ public class Partida
         foreach (var jogo in jogos)
         {
             jogo.PreparaPergunta(_config);
-            max = Math.Max(max + jogo.MaxPerguntas, int.MaxValue);
+            max = Math.Min(max + jogo.MaxPerguntas, int.MaxValue);
         }
 
         return max;

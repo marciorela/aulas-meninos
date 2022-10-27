@@ -121,7 +121,7 @@ else
                                     @if (!Model.Partida.Jogos[i].Acerto && Model.Partida.FimDePartida())
                                     {
                                         <br />
-                                        <span class="h-100 ps-2 pe-2 @ClassResposta(true)">@Model.Partida.Jogos[i].Resposta</span>
+                                        <span class="h-100 ps-2 pe-2 @ClassResposta(true)">@Model.Partida.Jogos[i].Resposta.First()</span>
                                     }
                                 </div>
                             </div>

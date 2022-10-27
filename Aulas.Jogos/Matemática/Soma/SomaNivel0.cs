@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Aulas.Jogos.Matematica.Soma
+namespace Aulas.Jogos.Matemática.Soma
 {
     public class SomaNivel0 : Jogo
     {

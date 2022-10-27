@@ -16,7 +16,10 @@ namespace Aulas.Services
         private static List<Type> ListTypes()
         {
             var ass = Assembly.GetAssembly(typeof(Jogo))!;
-            var list = ass.GetTypes().Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo) && (_filter.Count == 0 || _filter.Any(f => f == x.ToString()))).ToList();
+            var list = ass.GetTypes()
+                .Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo) && (_filter.Count == 0 || _filter.Any(f => f == x.ToString())))
+                .OrderBy(x => x.FullName)
+                .ToList();
 
             return list;
         }

@@ -37,35 +37,37 @@ namespace Aulas.Web.Pages
                 Jogador.Nome = nome;
             }
 
-            TipoJogo.Filter(new());
-            Tipos = TipoJogo.ListInstances();
-
             if (!Request.Cookies.TryGetValue("Opcoes", out string opcoes))
             {
                 opcoes = "";
             }
 
             var listOpcoes = opcoes.Split(',').ToList();
-            Checks = Tipos.Select(x => new TipoChecked() {
-                Descricao = x.Descricao,
-                ClassName = x.GetType().ToString(),
-                Checked = listOpcoes.Any(o => o == x.GetType().ToString())
-            }).ToList();
+            GetTipoChecked(listOpcoes);
 
             return Page();
         }
 
-        public IActionResult OnPost()
+        private void GetTipoChecked(List<string> listOpcoes)
         {
+            TipoJogo.Filter(new());
             Tipos = TipoJogo.ListInstances();
 
-            if (string.IsNullOrWhiteSpace(Jogador.Nome))
+            Checks = Tipos.Select(x => new TipoChecked()
             {
-                return Page();
-            }
-            else if (!Checks.Any(x => x.Checked))
+                Descricao = x.Descricao,
+                ClassName = x.GetType().ToString(),
+                Checked = listOpcoes.Any(o => o == x.GetType().ToString())
+            }).ToList();
+        }
+
+        public IActionResult OnPost()
+        {
+
+            if (!Checks.Any(x => x.Checked))
             {
                 ErrorMessage = "Informe pelo menos uma opção!";
+                GetTipoChecked(new());
                 return Page();
             }
 

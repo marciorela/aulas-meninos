@@ -16,11 +16,13 @@ public class Partida
     private Jogador _jogador;
     private readonly IConfiguration _config;
 
-    public int qtdJogos { get; set; } = 0;
+    public int QtdJogos { get; set; } = 0;
     
     public int Acertos => CountAcertos();
 
     public int Erros => CountErros();
+
+    public List<string> FiltroJogos { get; set; } = new();
 
     public List<Jogo> Jogos { get; set; } = new();
 
@@ -40,7 +42,7 @@ public class Partida
 
     public bool FimDePartida()
     {
-        return (qtdJogos > 0 && Jogos.Count(x => x.RespostaInformada != "") >= qtdJogos);
+        return (QtdJogos > 0 && Jogos.Count(x => x.RespostaInformada != "") >= QtdJogos);
     }
 
     public int PontuacaoFinal()
@@ -54,7 +56,7 @@ public class Partida
     {
         Jogos.Clear();
 
-        qtdJogos = Math.Min(
+        QtdJogos = Math.Min(
             _config.GetValue<int>("Perguntas"),
             MaxPerguntas()
         );
@@ -66,7 +68,7 @@ public class Partida
     {
         // CONTA O MÁXIMO DE JOGOS QUE ESSA PARTIDA PODE TER, BASEADO NO FILTRO ESCOLHIDO
         var max = 0;
-        var jogos = TipoJogo.ListInstances();
+        var jogos = TipoJogo.ListInstances(FiltroJogos);
         foreach (var jogo in jogos)
         {
             jogo.PreparaPergunta(_config);
@@ -82,7 +84,7 @@ public class Partida
         Jogo jogo;
         do
         {
-            jogo = TipoJogo.Random();
+            jogo = TipoJogo.Random(FiltroJogos);
             jogo.PreparaPergunta(_config);
         } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
 

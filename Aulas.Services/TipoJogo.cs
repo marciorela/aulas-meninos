@@ -11,22 +11,20 @@ namespace Aulas.Services
 {
     public static class TipoJogo
     {
-        private static readonly List<string> _filter = new();
-
-        private static List<Type> ListTypes()
+        private static List<Type> ListTypes(List<string> filter)
         {
             var ass = Assembly.GetAssembly(typeof(Jogo))!;
             var list = ass.GetTypes()
-                .Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo) && (_filter.Count == 0 || _filter.Any(f => f == x.ToString())))
+                .Where(x => x.IsClass && typeof(Jogo).IsAssignableFrom(x) && x != typeof(Jogo) && (filter.Count == 0 || filter.Any(f => f == x.ToString())))
                 .OrderBy(x => x.FullName)
                 .ToList();
 
             return list;
         }
 
-        public static List<Jogo> ListInstances()
+        public static List<Jogo> ListInstances(List<string> filter)
         {
-            var list = ListTypes();
+            var list = ListTypes(filter);
 
             var instances = new List<Jogo>();
             foreach (var type in list)
@@ -41,9 +39,9 @@ namespace Aulas.Services
             return instances;
         }
 
-        public static Jogo Random()
+        public static Jogo Random(List<string> filter)
         {
-            var list = ListTypes();
+            var list = ListTypes(filter);
 
             Jogo jogo;
             do
@@ -56,10 +54,5 @@ namespace Aulas.Services
             return jogo;
         }
 
-        public static void Filter(List<string> listOpcoes)
-        {
-            _filter.Clear();
-            _filter.AddRange(listOpcoes);
-        }
     }
 }

@@ -50,8 +50,7 @@ namespace Aulas.Web.Pages
 
         private void GetTipoChecked(List<string> listOpcoes)
         {
-            TipoJogo.Filter(new());
-            Tipos = TipoJogo.ListInstances();
+            Tipos = TipoJogo.ListInstances(new());
 
             Checks = Tipos.Select(x => new TipoChecked()
             {
@@ -71,7 +70,6 @@ namespace Aulas.Web.Pages
                 return Page();
             }
 
-            _partida = new Partida(new Jogador());
 
             var listOpcoes = new List<string>();
             for (int i = 0; i < Checks.Count; i++)
@@ -86,8 +84,8 @@ namespace Aulas.Web.Pages
             _logger.LogInformation("Key:{sessionId}, iniciando partida: {nome}, {opcoes}", HttpContext.Session.Id, Jogador.Nome, opcoes);
             SaveCookie(opcoes);
 
-            TipoJogo.Filter(listOpcoes);
-
+            _partida = new Partida(new Jogador());
+            _partida.FiltroJogos.AddRange(listOpcoes);
             _partida.Iniciar();
             _partida.Jogador.Nome = Jogador.Nome;
             _partida.SaveToSession(HttpContext.Session);

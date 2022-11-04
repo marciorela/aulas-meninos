@@ -22,7 +22,7 @@ namespace Aulas.Extensions
 
             if (Tipo == ETipoPergunta.String.ToString())
             {
-                output.TagName = "label";
+                output.TagName = "div";
                 output.TagMode = TagMode.StartTagAndEndTag;
                 output.Content.SetContent($"{Value}");
             }

@@ -64,13 +64,13 @@ else
     Model._logger.LogInformation("Key:{sessionId}, Pergunta: {pergunta} = {resposta}", HttpContext.Session.Id, Model.Partida.Jogos.Last().Pergunta, Model.Partida.Jogos.Last().Resposta);
 
     <div class="row mt-1">
-        <div class="col-12">
+        <div class="col-12 col-lg-8 offset-lg-2">
 
-            <div class="text-center" style="font-size: 20px">
+            <div class="text-center mt-2" style="font-size: 20px">
                 <label>@Model.Partida.Jogos.Last().Titulo</label>
             </div>
 
-            <div class="text-center mt-3" style="font-size: 50px">
+            <div class= text-center mt-2" style="@Model.Partida.Jogos.Last().PerguntaStyle">
                 <pergunta tipo="@Model.Partida.Jogos.Last().TipoPergunta.ToString()" value="@Model.Partida.Jogos.Last().Pergunta" />
             </div>
 
@@ -106,13 +106,13 @@ else
 
                     <div class="@ClassResposta(Model.Partida.Jogos[i].Acerto)">
 
-                        <div class="row p-1" style="height: 53px">
+                        <div class="row p-1">
 
-                            <div class="col-6 d-flex align-items-center justify-content-end mh-100 p-0">
-                                <pergunta class="mh-100 me-2" tipo="@Model.Partida.Jogos[i].TipoPergunta" value="@Model.Partida.Jogos[i].Pergunta" />
+                            <div class="col-6 d-flex align-items-center justify-content-end mh-100 text-truncate text-wrap">
+                                <pergunta style="max-height: 100px" tipo="@Model.Partida.Jogos[i].TipoPergunta" value="@Model.Partida.Jogos[i].Pergunta" />
                             </div>
 
-                            <div class="col-6 d-flex align-items-center mh-100 p-2">
+                            <div class="col d-flex align-items-center mh-100 p-2">
                                 <span> = </span>
                                 
                                 <div class="ms-2">

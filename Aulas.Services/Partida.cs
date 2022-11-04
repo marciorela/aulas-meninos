@@ -86,7 +86,7 @@ public class Partida
         {
             jogo = TipoJogo.Random(FiltroJogos);
             jogo.PreparaPergunta(_config);
-        } while (Jogos.Any(x => x.Pergunta == jogo.Pergunta));
+        } while (Jogos.Any(x => (string.IsNullOrEmpty(x.Template) ? x.Pergunta : x.Template) == (string.IsNullOrEmpty(jogo.Template) ? jogo.Pergunta : jogo.Template)));
 
         Jogos.Add(jogo);
     }

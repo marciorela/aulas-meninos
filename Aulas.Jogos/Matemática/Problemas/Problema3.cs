@@ -18,7 +18,7 @@ namespace Aulas.Jogos.Matemática.Problemas
             new PerguntaResposta("Papai Noel tinha <n1:20-60> renas e nasceram <n2:20-30>. Quantas renas tem agora?", "<n1> + <n2>"),
             new PerguntaResposta("Na casa de Matheus tem <n1:8-12> laranjeiras, <n2:2-4> mangueiras, <n3:2-5> limoeiros, <n4:10-12> goiabeiras e <n5:2-4> bananeiras. Quantas árvores tem no total?", "<n1> + <n2> + <n3> + <n4> + <n5>"),
             new PerguntaResposta("Se a previsão é de que o dia amanheça em <n1:18-22>ºC e passe para <n2:28-34>ºC ao longo do dia. Quantos graus irá subir?", "<n2> - <n1>"),
-            new PerguntaResposta("Alice convidou <n1:80-99> crianças para sua festa de aniversário. <n2:60-79> crianças confirmaram presença. Quantas crianças não vão participar?", "<n2> - <n1>"),
+            new PerguntaResposta("Alice convidou <n1:80-99> crianças para sua festa de aniversário. <n2:60-79> crianças confirmaram presença. Quantas crianças não vão participar?", "<n1> - <n2>"),
             new PerguntaResposta("Para entrar em casa, João precisa subir <n1:15-20> degraus. Da hora em que acorda até a hora de dormir, ele sobe esses degraus <n2:2-4> vezes. Quantos degraus João sobe por dia?", "<n1> * <n2>"),
         };
 

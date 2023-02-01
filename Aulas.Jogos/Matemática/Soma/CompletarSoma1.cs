@@ -39,7 +39,6 @@ namespace Aulas.Jogos.Matemática.Soma
             expr += $" = {total}";
 
             Pergunta = expr.Trim();
-            Resposta.Add(total.ToString());
         }
     }
 }

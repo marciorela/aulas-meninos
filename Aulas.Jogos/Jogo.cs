@@ -90,4 +90,15 @@ namespace Aulas.Jogos
         public string? Resposta { get; set; }
         public string? Link { get; set; }
     }
+    public class PerguntaResposta
+    {
+        public string Pergunta { get; set; }
+        public string Resposta { get; set; }
+
+        public PerguntaResposta(string pergunta, string resposta)
+        {
+            Pergunta = pergunta;
+            Resposta = resposta;
+        }
+    }
 }

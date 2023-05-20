@@ -44,16 +44,5 @@ namespace Aulas.Jogos.Matemática.Problemas
             SubstituiTemplate();
         }
 
-        public class PerguntaResposta
-        {
-            public string Pergunta { get; set; }
-            public string Resposta { get; set; }
-
-            public PerguntaResposta(string pergunta, string resposta)
-            {
-                Pergunta = pergunta;
-                Resposta = resposta;
-            }
-        }
     }
 }

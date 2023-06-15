@@ -9,7 +9,7 @@ namespace Aulas.Jogos.Matemática.Subtracao
 {
 	public class Subtracao2 : Jogo
 	{
-		private const int maxNumber = 100;
+		private const int maxNumber = 500;
 
 		public override string Titulo => "Quanto é?";
 

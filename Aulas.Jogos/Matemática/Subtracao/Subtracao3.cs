@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Aulas.Jogos.Matemática.Subtracao
 {
-	public class Subtracao1 : Jogo
+	public class Subtracao3 : Jogo
 	{
-		private const int maxNumber = 30;
+		private const int maxNumber = 1000;
 
 		public override string Titulo => "Quanto é?";
 
-		public override string Descricao => $"Subtração 1: Números abaixo de {maxNumber}. Algarismos maiores.";
+		public override string Descricao => $"Subtração 3: Números abaixo de {maxNumber}";
 
 		public override void PreparaPergunta(IConfiguration config)
 		{
@@ -22,7 +22,6 @@ namespace Aulas.Jogos.Matemática.Subtracao
 
 			string expr;
 			int total;
-			bool digitError;
 			do
 			{
 				expr = "";
@@ -36,18 +35,7 @@ namespace Aulas.Jogos.Matemática.Subtracao
 				}
 
 				total = digits[0] - digits[1];
-
-				// VERIFICA SE TODOS OS DÍGITOS DO PRIMEIRO NÚMERO SÃO MAIORES QUE O SEGUNDO NÚMERO
-				digitError = false;
-				for (var i=0; i < 10; i++)
-				{
-					if (digits[0].ToString().PadLeft(10, '0')[i] < digits[1].ToString().PadLeft(10, '0')[i])
-					{
-						digitError = true;
-					}
-				}
-
-			} while (digits[1] > digits[0] || total < 0 || digitError);
+			} while (digits[1] > digits[0] || total < 0);
 			expr = expr[..^3];
 
 			Pergunta = expr.Trim();
